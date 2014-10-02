@@ -6,7 +6,7 @@
 
 **2. Requirements Analysis**
 
-- [ ] Data and operations on data
+- [x] Data and operations on data
 
 **3. Conceptual design**
 
