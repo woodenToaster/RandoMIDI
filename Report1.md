@@ -10,7 +10,7 @@
 
 **3. Conceptual design**
 
-- [ ] ER diagram and constraints
+- [x] ER diagram and constraints
 
 **4. Logical design**
 
