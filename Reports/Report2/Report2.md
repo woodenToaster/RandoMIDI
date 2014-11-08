@@ -52,10 +52,27 @@ The front end for the RandoMIDI application is very simple, and involves two maj
  
 
 # III. PHP Back End
-  1. Form Processing - Wes
-  2. Database - Wes
-  3. Queries - Chris
+  1. **Form Processing** - Wes
+  2. **Database** - Wes
+  3. **Queries** - Chris
 
 # IV. Python Back End
+After the PHP code gets the user input, retrieves the appropriate info from the database, and formats the data as input for MIDI generation, a Python script is called, which will take the data and programatically create and return a MIDI file.  We will use a Python music package called "mingus" to do all MIDI processing.  The arguments to calling the script will be contained in a Python-style dictionary.  Here is an example of calling the script from PHP:
+  
+  `$command = escapeshellcmd("python3 ./python/createMidi.py $arguments");`
 
- Chris
+  `$output = shell_exec($command);`
+  
+where `$arguments` is a variable that contains a dictionary like the following:
+
+  `{'tempo': 120, 'mode': 'major',`
+  
+  `'instruments': ['acoustic guitar', 'piano'],`
+  
+  `'key': 'E', 'time signature': '4/4',`
+  
+  `'progression': ['I', 'IV', 'V', 'I'],`
+  
+  `'motif': [('C4', 'e'),('D4', 'e'),('A4b', 'q')]}`
+
+This string will be built up in PHP from the form and database information.  The script will then use this data to generate a MIDI file using the methods contained in the mingus library.  The return value will be a .mid file, which will then be played by the embedded player.   
