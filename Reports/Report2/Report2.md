@@ -54,7 +54,56 @@ The front end for the RandoMIDI application is very simple, and involves two maj
 # III. PHP Back End
   1. **Form Processing** - Wes
   2. **Database** - Wes
-  3. **Queries** - Chris
+  3.  **Queries**
+  
+ Select a random motif in the key of C major:
+
+ `SELECT *`
+
+ `FROM Motifs`
+
+ `WHERE Key='C'`
+ 
+ `AND Mode='major'`
+ 
+ `ORDER BY RAND()`
+
+ `LIMIT 0,1;`
+ 
+ Get all chord progressions and instruments for a blues song:
+ 
+ `SELECT Instruments.Name AS Name, Chords`
+ 
+ `FROM Instruments, Progressions`
+ 
+ `WHERE Instruments.Style='blues'`
+ 
+ `AND Progressions.Name LIKE 'blues%'`
+ 
+ Get a motif that harmonizes a C major chord:
+ 
+ `SELECT Motif`
+ 
+ `FROM Motifs, Scales`
+ 
+ `WHERE Motifs.Key='C'`
+ 
+ `AND Motifs.Mode='major'`
+ 
+ `AND Scales.Tonic='C'`
+ 
+ `AND Scales.Mode='major'`
+ 
+ `AND (`
+ 
+     `Motif LIKE CONCAT ('[(\'', Note1, '%')`
+     
+   `OR Motif LIKE CONCAT ('[(\'', Note3, '%')`
+   
+   `OR Motif LIKE CONCAT ('[(\'', Note5, '%')`
+   
+ `)`
+    
 
 # IV. Python Back End
 After the PHP code gets the user input, retrieves the appropriate info from the database, and formats the data as input for MIDI generation, a Python script is called, which will take the data and programatically create and return a MIDI file.  We will use a Python music package called "mingus" to do all MIDI processing.  The arguments to calling the script will be contained in a Python-style dictionary.  Here is an example of calling the script from PHP:
