@@ -96,11 +96,11 @@ The front end for the RandoMIDI application is very simple, and involves two maj
  
  `AND (`
  
-     `Motif LIKE CONCAT ('[(\'', Note1, '%')`
+     `Motif LIKE '[(\'C%'`
      
-   `OR Motif LIKE CONCAT ('[(\'', Note3, '%')`
+   `OR Motif LIKE '[(\'E%'`
    
-   `OR Motif LIKE CONCAT ('[(\'', Note5, '%')`
+   `OR Motif LIKE '[(\'G%'`
    
  `)`
     
