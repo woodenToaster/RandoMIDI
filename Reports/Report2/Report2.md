@@ -1,3 +1,9 @@
+#EECS 647 Report 2
+
+Wesley Hoffman
+
+Christopher Hogan
+
 # I. Overall Architecture
 
 Starting from the user view, an HTML form will allow the user to input the data. After the form is completed, it is submitted to the database as PHP data. The database query is then run through our python back end that takes the queried data and turns it into a MIDI file. This file is then sent back to the HTML page in an embedded media player.
