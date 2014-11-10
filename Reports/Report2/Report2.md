@@ -58,8 +58,14 @@ The front end for the RandoMIDI application is very simple, and involves two maj
  
 
 # III. PHP Back End
-  1. **Form Processing** - Wes
-  2. **Database** - Wes
+  1. **Form Processing**
+
+   When the HTML form is filled out to the user’s specification, PHP will the retrieve the data requested in the form via a PHP script. It will run a query (examples in III.3.) on the database. After the query is ran, the output will be formatted and sent to our Python backend (part IV).
+
+  2. **Database**
+
+   The database is where all of our data for Motifs, Instruments, Progressions, etc. are stored. It is queried by the PHP script and returns the data that is queried. In the future, we may also use it to store the user created music. This is unforeseen. 
+
   3.  **Queries**
   
  Select a random motif in the key of C major:
