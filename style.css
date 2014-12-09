@@ -1,6 +1,7 @@
 #background {
     background-image: url("img/music.jpg");
     background-repeat: repeat-y;   
+    background-repeat: repeat-x;
 }
 
 #vertical-container {
@@ -8,4 +9,8 @@
     background-color: white;
     margin-right: 10%;
     margin-left: 10%;
+}
+
+.navbar-header h4 {
+    color: white;
 }
