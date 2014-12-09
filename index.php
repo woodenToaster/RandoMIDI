@@ -16,7 +16,7 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <form  id="options" action="createFormArgs.php" method="post">
+            <form  id="options" action="createFormArgs.php" onsubmit="return validateForm()" method="post">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" placeholder="Name your composition">
@@ -184,4 +184,13 @@
   </div>
 </body>
 </html>
+
+
+function validateForm(){
+  var x = document.forms["options"]["tempo"].value;
+  if(40 > x || x > 260){
+    alert("Given tempo is out of bounds.");
+    return false;
+  }
+}
 
