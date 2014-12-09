@@ -8,14 +8,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">RandoMIDI</a>
+      <p class="navbar-brand"><span class="glyphicon glyphicon-music"></span>RandoMIDI</p>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Songs <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">Link</a></li>
+        <li><a href="songs.php"><span class="glyphicon glyphicon-play"></span>Songs <span class="sr-only">(current)</span></a></li>
+        <li><a href="index.php"><span class="glyphicon glyphicon-pencil"></span>Create <span class="sr-only">(current)</span></a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->

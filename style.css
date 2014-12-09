@@ -1,3 +1,11 @@
-form input {
-	display: block;
+#background {
+    background-image: url("img/music.jpg");
+    background-repeat: repeat-y;   
+}
+
+#vertical-container {
+    position: relative;
+    background-color: white;
+    margin-right: 10%;
+    margin-left: 10%;
 }
