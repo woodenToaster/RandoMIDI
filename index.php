@@ -185,10 +185,11 @@
 </body>
 </html>
 
-
+<script>
 function validateForm(){
   var x = document.forms["options"]["tempo"].value;
   var temp = true;
+  if(x.length == 0) return temp;
   if(40 > x || x > 260){
     alert("Given tempo is out of bounds.");
     temp = false;
@@ -199,10 +200,12 @@ function validateForm(){
   }
   return temp;
 }
-
+</script>
+<script>
 function chordFormat(){
   var x = document.forms["options"]["progression"].value;
   var patt = /(I|V|i|v)/\s/(I|V|i|v)/\s/(I|V|i|v)
   return patt.test(x);
 }
+</script>
 
