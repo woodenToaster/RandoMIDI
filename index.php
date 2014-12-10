@@ -188,9 +188,21 @@
 
 function validateForm(){
   var x = document.forms["options"]["tempo"].value;
+  var temp = true;
   if(40 > x || x > 260){
     alert("Given tempo is out of bounds.");
-    return false;
+    temp = false;
   }
+  if(!chordFormat()){
+    alert("Chord progression needs to be in form of I V I");
+    temp = false;
+  }
+  return temp;
+}
+
+function chordFormat(){
+  var x = document.forms["options"]["progression"].value;
+  var patt = /(I|V|i|v)/\s/(I|V|i|v)/\s/(I|V|i|v)
+  return patt.test(x);
 }
 
