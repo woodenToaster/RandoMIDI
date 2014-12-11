@@ -192,21 +192,23 @@ function chordFormat(){
   var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)+\s)*/
   return patt.test(x);
 }
-</script>
-
-
-<script>
 function validateForm(){
   var x = document.forms["options"]["tempo"].value;
   var temp = true;
-  if(x.length == 0) return temp;
-  if(40 > x || x > 260){
-    alert("Given tempo is out of bounds.");
-    temp = false;
+  if(x.length != 0){
+    if(40 > x || x > 260){
+      alert("Given tempo is out of bounds.");
+      temp = false;
+    }
   }
-  if(!chordFormat()){
-    alert("Chord progression needs to be in form of I V I");
-    temp = false;
+  x = document.forms["options"]["progression"].value;
+  var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)+\s)+/
+  if(x.length != 0){
+    alert(patt.test(x));
+    if(!patt.test(x)){
+      alert("Chord progression needs to be in form of roman numeral 'space' roman numeral");
+      temp = false;
+    }
   }
   return temp;
 }
