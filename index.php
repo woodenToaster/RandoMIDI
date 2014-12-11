@@ -204,7 +204,6 @@ function validateForm(){
   x = document.forms["options"]["progression"].value;
   var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)+\s)+/
   if(x.length != 0){
-    alert(patt.test(x));
     if(!patt.test(x)){
       alert("Chord progression needs to be in form of roman numeral 'space' roman numeral");
       temp = false;
