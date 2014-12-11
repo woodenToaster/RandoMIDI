@@ -185,6 +185,16 @@
 </body>
 </html>
 
+
+<script>
+function chordFormat(){
+  var x = document.forms["options"]["progression"].value;
+  var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)+\s)*/
+  return patt.test(x);
+}
+</script>
+
+
 <script>
 function validateForm(){
   var x = document.forms["options"]["tempo"].value;
@@ -199,13 +209,6 @@ function validateForm(){
     temp = false;
   }
   return temp;
-}
-</script>
-<script>
-function chordFormat(){
-  var x = document.forms["options"]["progression"].value;
-  var patt = /(I|V|i|v)/\s/(I|V|i|v)/\s/(I|V|i|v)
-  return patt.test(x);
 }
 </script>
 
