@@ -6,7 +6,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <?php include('navbar.php'); ?>
+  <?php include('php_includes/navbar.php'); ?>
   <div id="background">
     <div id="vertical-container">
       <div class="container-fluid">
@@ -16,88 +16,87 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <form  id="options" action="createFormArgs.php" method="post">
+            <form  id="options" action="createMIDI.php" method="post">
               <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Name your composition">
+                <input type="text" class="form-control" id="name" name="name" placeholder="Name your composition">
               </div>
               <div class="form-group">
                 <label for="style">Style</label>
-                <select name="style-list" form="options" class="form-control">
-                  <option>None</option>
-                  <option>Rock</option>
-                  <option>Blues</option>
-                  <option>Classical</option>
-                  <option>Unicorn Metal</option>
+                <select name="style" form="options" class="form-control">
+                  <option value="none">None</option>
+                  <option value="rock">Rock</option>
+                  <option value="blues">Blues</option>
+                  <option value="classical">Classical</option>
                 </select>
               </div>
               <div class="form-group">
             <label for="key">Key</label>
-            <select name="key-list" form="options" class="form-control">
-              <option>Atonal</option>
-              <option>C</option>
-              <option>C-sharp</option>
-              <option>D-flat</option>
-              <option>D</option>
-              <option>E-flat</option>
-              <option>E</option>
-              <option>F</option>
-              <option>F-sharp</option>
-              <option>G</option>
-              <option>A-flat</option>
-              <option>A</option>
-              <option>B-flat</option>
-              <option>B</option>
+            <select name="key" form="options" class="form-control">
+              <option value="atonal">Atonal</option>
+              <option value="c">C</option>
+              <option value="c-sharp">C-sharp</option>
+              <option value="d-flat">D-flat</option>
+              <option value="d">D</option>
+              <option value="e-flat">E-flat</option>
+              <option value="e">E</option>
+              <option value="f">F</option>
+              <option value="f-sharp">F-sharp</option>
+              <option value="g">G</option>
+              <option value="a-flat">A-flat</option>
+              <option value="a">A</option>
+              <option value="b-flat">B-flat</option>
+              <option value="b">B</option>
             </select>
               </div>
               <div class="form-group">
             <label for="mode">Mode</label>
-            <select name="mode-list" form="options" class="form-control">
-              <option>None</option>
-              <option>Major</option>
-              <option>Minor</option>
-              <option>Dorian</option>
-              <option>Phrygian</option>
-              <option>Lydian</option>
-              <option>Mixolydian</option>
-              <option>Aeolian</option>
-              <option>Locrian</option>
+            <select name="mode" form="options" class="form-control">
+              <option value="none">None</option>
+              <option value="major">Major</option>
+              <option value="minor">Minor</option>
+              <option value="dorian">Dorian</option>
+              <option value="phrygian">Phrygian</option>
+              <option value="lydian">Lydian</option>
+              <option value="mixolydian">Mixolydian</option>
+              <option value="aeolian">Aeolian</option>
+              <option value="locrian">Locrian</option>
             </select>
               </div>
               <div class="form-group">
                 <label for="tempo">Tempo</label>
-                <input type="text" class="form-control" id="tempo" placeholder="Enter Tempo between 40 and 260 bpm">
+                <input type="text" class="form-control" id="tempo" name="tempo" placeholder="Enter Tempo between 40 and 260 bpm">
               </div>
               <label for="instruments">Instruments</label>
               <div class="row">
                 <div class="col-lg-4">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="piano">
                   Piano
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="guitar">
                   Guitar
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="cello">
                   Cello
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="violin">
                   Violin
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="electric bass">
                   Electric Bass
                 </label>
               </div>
@@ -105,31 +104,31 @@
                 <div class="col-lg-4">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="harpsichord">
                   Harpsichord
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="acoustic guitar">
                   Acoustic Guitar
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="classical guitar">
                   Classical Guitar
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="french horn">
                   French Horn
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="string bass">
                   String Bass
                 </label>
               </div>
@@ -137,31 +136,31 @@
                 <div class="col-lg-4">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="flute">
                   Flute
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="clarinet">
                   Clarinet
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="bassoon">
                   Bassoon
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="percussion">
                   Percussion
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" value="">
+                  <input type="checkbox" name="instruments[]" value="tuba">
                   Tuba
                 </label>
               </div>
@@ -169,11 +168,11 @@
               </div>
               <div class="form-group">
                 <label for="motif">Motif</label>
-                <input type="text" class="form-control" id="motif" placeholder="Enter Motif">
+                <input type="text" class="form-control" id="motif" name="motif" placeholder="Enter Motif">
               </div>
               <div class="form-group">
                 <label for="progression">Chord Progression</label>
-                <input type="text" class="form-control" id="progression" placeholder="Enter Progression">
+                <input type="text" class="form-control" id="progression" name="progression" placeholder="Enter Progression">
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
             </form>
