@@ -20,7 +20,7 @@
               </form>
               <ul class="list-group">
                 <li class="list-group-item">
-                  <button class="btn btn-success" value="Taylor">
+                  <button type="submit" class="btn btn-success" name="Taylor" value="Taylor">
                     <span class="glyphicon glyphicon-play"></span>
                   </button>
                   Taylor Swift Test
