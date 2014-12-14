@@ -20,10 +20,10 @@
               </form>
               <ul class="list-group">
                 <li class="list-group-item">
-                  <button class="btn btn-success">
+                  <button class="btn btn-success" onclick="$midi->playMidFile($taylor_swift-shake_it_off.mid,0,1,0,'quicktime')">
                     <span class="glyphicon glyphicon-play"></span>
                   </button>
-                  My cool song
+                  Taylor Swift Test
                 </li>
                 <li class="list-group-item">
                   <button class="btn btn-success">
