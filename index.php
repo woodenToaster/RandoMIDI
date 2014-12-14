@@ -187,11 +187,6 @@
 
 
 <script>
-function chordFormat(){
-  var x = document.forms["options"]["progression"].value;
-  var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)+\s)*/
-  return patt.test(x);
-}
 function validateForm(){
   var x = document.forms["options"]["tempo"].value;
   var temp = true;
