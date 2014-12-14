@@ -20,7 +20,7 @@
               </form>
               <ul class="list-group">
                 <li class="list-group-item">
-                  <button class="btn btn-success" onclick="playsong.php">
+                  <button class="btn btn-success" value="Taylor">
                     <span class="glyphicon glyphicon-play"></span>
                   </button>
                   Taylor Swift Test
@@ -56,4 +56,19 @@
       </div>
     </div>
   </body>
-</html
+</html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $('.button').click(function(){
+        var clickBtnValue = $(this).val();
+        var ajaxurl = 'ajax.php',
+        data =  {'action': clickBtnValue};
+        $.post(ajaxurl, data, function (response) {
+            // Response div goes here.
+            alert("action performed successfully");
+        });
+    });
+
+});
+</script>
