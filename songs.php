@@ -7,13 +7,6 @@
 </head>
   <body>
     <?php include('navbar.php'); ?>
-    <?php
-      require('midi_class_v178/classes/midi.class.php');
-      $midi = new Midi();
-      function playFile(){
-        $midi->playMidFile(taylor_swift-shake_it_off.mid,0,1,0,'quicktime');
-      }
-    ?>
     <div id="background">
       <div id="vertical-container">
         <div class="container-fluid">
@@ -27,7 +20,7 @@
               </form>
               <ul class="list-group">
                 <li class="list-group-item">
-                  <button class="btn btn-success" onclick="playFile()">
+                  <button class="btn btn-success" onclick="playsong.php">
                     <span class="glyphicon glyphicon-play"></span>
                   </button>
                   Taylor Swift Test
