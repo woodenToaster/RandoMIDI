@@ -11,7 +11,7 @@
       require('midi_class_v178/classes/midi.class.php');
       $midi = new Midi();
       function playFile(){
-        $midi->playMidFile(taylor_swift-shake_it_off.mid,0,1,0,'quicktime')
+        $midi->playMidFile(taylor_swift-shake_it_off.mid,0,1,0,'quicktime');
       }
     ?>
     <div id="background">
