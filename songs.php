@@ -20,9 +20,7 @@
               </form>
               <ul class="list-group">
                 <li class="list-group-item">
-                  <button type="submit" class="btn btn-success" name="Taylor" value="Taylor">
-                    <span class="glyphicon glyphicon-play"></span>
-                  </button>
+                  <input type="submit" class="button" name="Taylor" value="Taylor">
                   Taylor Swift Test
                 </li>
                 <li class="list-group-item">
@@ -57,6 +55,7 @@
     </div>
   </body>
 </html>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
     $('.button').click(function(){
