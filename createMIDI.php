@@ -80,17 +80,37 @@
       echo $motif;       echo "</br>";
       echo $progression; echo "</br>";
 
-      //Create MIDI text file
-      require('midi_class_v178/classes/midi.class.php');
+      //This section is where the MIDI text file is created
+      require('classes/midi.class.php');
 
+      //Each instrument gets its own track
+      $tracks = count($instruments);
+      
       $midi = new Midi();
       $midi->open();
-      $track1 = $midi->newTrack();
-      $midi->addMsg(0, "4800 On ch=1 n=66 v=80");
       $midi->setTempo($tempo);
+      $track1 = $midi->newTrack();
+      $midi->addMsg(1, "0 Par ch=1 c=6 v=0");
+      $midi->addMsg(1, "0 Par ch=1 c=7 v=100");
+      $midi->addMsg(1, "0 Par ch=1 c=64 v=0");
+      $midi->addMsg(1, "0 Pb ch=1 v=8192");
+      $midi->addMsg(1, "0 PrCh ch=1 p=16 ");
+      $midi->addMsg(1, "480 On ch=1 n=66 v=80");
+      $midi->addMsg(1, "960 Off ch=1 n=66 v=80");
+      $midi->addMsg(1, "970 Meta TrkEnd");
       $midi_text = $midi->getTxt();
+      $midi->importTxt($midi_text);
+      $save_dir = 'tmp/';
+      srand((double)microtime()*1000000);
+      $file = $save_dir.rand().".mid";
+      $midi->saveMidFile($file, 0666);
       echo $midi_text;
       echo "</br>";
+      print_r($midi);
+      $pianoNum = array_search('Piano', $midi->getInstrumentList());
+      echo $pianoNum; echo "</br>";
+      $smf = $midi->getMid();
+      $midi->playMidFile($file, true, true, true, "windowsmedia");
     ?>
   </body>
 </html>
