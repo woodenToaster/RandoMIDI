@@ -118,8 +118,8 @@
       
       //Create a track for each instrument
       for($i = 0; $i < $numTracks; $i++) {
-        $currTrack = $i;
-
+        $currTrack = $i + 1;
+        $midi->newTrack();
         echo "Track: ".$currTrack;
         $channel = $i + 1;
         $ticks = 0;
@@ -154,7 +154,7 @@
         //End the track
         $ticks += 480;
         $midi->addMsg($currTrack, $ticks." Meta TrkEnd");
-        $midi->newTrack();
+
       }
       
       
