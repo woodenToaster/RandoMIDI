@@ -129,13 +129,13 @@
         $midi->addMsg($track, $ticks." PrCh ch=".$channel." p=".$instrNum);
 
         //Create a pseudo random note sequence
-        for() {
+        //for() {
           $midi->addMsg($track, "480 On ch=".$channel." n=66 v=80");
           $midi->addMsg($track, "960 Off ch=".$channel." n=66 v=80");
-        }
+        //}
         //End the track
-        $ticks += 480;
-        $midi->addMsg($track, $ticks." Meta TrkEnd");
+        //$ticks += 480;
+        $midi->addMsg($track, "970 Meta TrkEnd");
       }
       
       
