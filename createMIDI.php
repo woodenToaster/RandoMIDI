@@ -5,7 +5,6 @@
       //Display errors during developemnt
       ini_set('display_errors',1);
       ini_set('display_startup_errors',1);
-      ini_set('memory_limit', '512M');
       //mysqli_report(MYSQLI_REPORT_ALL);
       error_reporting(E_ALL);
 
@@ -135,14 +134,14 @@
         $midi->addMsg($currTrack, $ticks." PrCh ch=".$channel." p=".$instrNum);
 
         //Create an array of random notes
-        $numNotes = rand(1,5);
+        $numNotes = rand(1,10);
         $notes = [];
         for($i = 0; $i < $numNotes; $i++) {
           $noteVal = rand(0, 127);
           $notes[] = $noteVal;
         }
 
-        $measures = rand(2, 4);
+        $measures = rand(5, 10);
         $durations = ['w', 'h', 'q', 'e', 's'];
         for($i = 0; $i < $measures; $i++) {
           $note = $notes[rand(0, ($numNotes - 1))];
