@@ -111,25 +111,27 @@
       echo $progression; echo "</br>";
 
       //This section is where the MIDI text file is created
-      $tracks = count($instruments);
+      $numTracks = count($instruments);
+      echo "Tracks: ".$numTracks;
       $midi->open();
       $midi->setBpm($tempo);
       
       //Create a track for each instrument
       for($i = 0; $i < $tracks; $i++) {
-        $track = $midi->newTrack();
+        $currTrack = $midi->newTrack();
+        echo "Track: ".$currTrack;
         $channel = $i + 1;
         $ticks = 0;
         $instrNum = $instruments[$i];
         //Set most significant bit mode to false
-        $midi->addMsg($track, $ticks." Par ch=".$channel." c=6 v=0");
+        $midi->addMsg($currTrack, $ticks." Par ch=".$channel." c=6 v=0");
         //Set master volume to 100
-        $midi->addMsg($track, $ticks." Par ch=".$channel." c=7 v=100");
+        $midi->addMsg($currTrack, $ticks." Par ch=".$channel." c=7 v=100");
         //Turn sustain off
-        $midi->addMsg($track, $ticks." Par ch=".$channel." c=64 v=0");
-        $midi->addMsg($track, $ticks." Pb ch=".$channel." v=8192");
+        $midi->addMsg($currTrack, $ticks." Par ch=".$channel." c=64 v=0");
+        $midi->addMsg($currTrack, $ticks." Pb ch=".$channel." v=8192");
         //Set instrument
-        $midi->addMsg($track, $ticks." PrCh ch=".$channel." p=".$instrNum);
+        $midi->addMsg($currTrack, $ticks." PrCh ch=".$channel." p=".$instrNum);
 
         //Create an array of random notes
         $numNotes = rand(1,5);
@@ -143,14 +145,14 @@
         $durations = ['w', 'h', 'q', 'e', 's'];
         for($i = 0; $i < $measures; $i++) {
           $note = $notes[rand(0, ($numNotes - 1))];
-          $midi->addMsg($track, $ticks." On ch=".$channel." n=".$note." v=80");
+          $midi->addMsg($currTrack, $ticks." On ch=".$channel." n=".$note." v=80");
           $increment = getTicksByNote($durations[rand(0, 4)]);
           $ticks += $increment;
-          $midi->addMsg($track, $ticks." Off ch=".$channel." n=".$note." v=80");
+          $midi->addMsg($currTrack, $ticks." Off ch=".$channel." n=".$note." v=80");
         }
         //End the track
         $ticks += 480;
-        $midi->addMsg($track, $ticks." Meta TrkEnd");
+        $midi->addMsg($currTrack, $ticks." Meta TrkEnd");
       }
       
       
