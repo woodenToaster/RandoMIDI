@@ -8,7 +8,7 @@
       error_reporting(E_ALL);
 
       require('classes/midi.class.php');
-      //include('connection.php');
+      include('connection.php');
       include('getTicksByNote.php');
       
 
@@ -66,17 +66,14 @@
         $motif = $_POST["motif"];
         //See if this motif is already in the DB
         $stmt = $conn->prepare('SELECT * FROM MOTIFS WHERE Motif = ?');
-        $stmt->bind_param($motif, $Motif);
+        $stmt->bind_param($motif);
         $stmt->execute();
         $result = $stmt->get_result();
         if(!$result) {
           //Add this motif to the DB
           $stmt = $conn->prepare('INSERT INTO MOTIFS(Key, Mode, TimeSignature, Motif)
                                   VALUES(?, ?, ?, ?)');
-          $stmt->bind_param($key, $Key);
-          $stmt->bind_param($mode, $Mode);
-          $stmt->bind_param('4/4', $TimeSignature);
-          $stmt->bind_param($motif, $Motif);
+          $stmt->bind_param($key, $mode, '4/4', $motif);
 
           $stmt->execute();
         }
