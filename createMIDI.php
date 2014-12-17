@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <body>
     <?php
@@ -6,16 +7,8 @@
       ini_set('display_startup_errors',1);
       error_reporting(E_ALL);
 
-      //Connect to database
-      //$servername = "mysql.eecs.ku.edu";
-      //$username = "chogan";
-      //$password = "581!!";
-
-      //$conn = new mysqli($servername, $username, $password);
-
-      //if ($conn->connect_error) {
-      //  die("Connection failed: " . $conn->connect_error);
-      //}
+      include('connection.php');
+      include('getTicksByNote.php');
 
       //Get all posted variables 
       if(isset($_POST["name"])) {
@@ -88,7 +81,7 @@
       
       $midi = new Midi();
       $midi->open();
-      $midi->setTempo($tempo);
+      $midi->setBpm($tempo);
       $track1 = $midi->newTrack();
       $midi->addMsg(1, "0 Par ch=1 c=6 v=0");
       $midi->addMsg(1, "0 Par ch=1 c=7 v=100");
