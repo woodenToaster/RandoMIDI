@@ -69,7 +69,8 @@
         $stmt->bind_param('s', $motif);
         $stmt->execute();
         $result = $stmt->get_result();
-        if(!$result) {
+        $finfo = $result->fetch_field();
+        if(!$finfo->Motif) {
           //Add this motif to the DB
           $stmt = $conn->prepare('INSERT INTO MOTIFS(Key, Mode, TimeSignature, Motif)
                                   VALUES(?, ?, ?, ?)');
