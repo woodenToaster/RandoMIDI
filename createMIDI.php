@@ -83,7 +83,7 @@
           $insertStmt->close();
         }
       } else {
-        //TODO: select random motif from DB
+        //TODO: Make sure a random motif is selected from DB when the field is blank
         $result = $conn->query('SELECT Motif FROM MOTIFS ORDER BY RAND() LIMIT 1');
         $motif = $result->fetch_assoc()['Motif'];
         echo "Motif: ".$motif; echo "</br>";
@@ -130,14 +130,26 @@
         //Set instrument
         $midi->addMsg($track, $ticks." PrCh ch=".$channel." p=".$instrNum);
 
-        //Create a pseudo random note sequence
-        //for() {
-          $midi->addMsg($track, "480 On ch=".$channel." n=66 v=80");
-          $midi->addMsg($track, "960 Off ch=".$channel." n=66 v=80");
-        //}
+        //Create an array of random notes
+        $numNotes = rand(1,10);
+        $notes = [];
+        for($i = 0; $i < $notes; $i++) {
+          $noteVal = rand(0, 127);
+          $notes[] = $noteVal;
+        }
+
+        $measures = rand(5, 10);
+        $durations = ['w', 'h', 'q', 'e', 's'];
+        for($i = 0; $i < $measures; $i++) {
+          $note = $notes[rand(0, ($numNotes - 1))];
+          $midi->addMsg($track, $ticks." On ch=".$channel." n=".$note." v=80");
+          $increment = getTicksByNote($durations[rand(0, 4)]);
+          $ticks += $increment;
+          $midi->addMsg($track, $ticks." Off ch=".$channel." n=".$note." v=80");
+        }
         //End the track
-        //$ticks += 480;
-        $midi->addMsg($track, "970 Meta TrkEnd");
+        $ticks += 480;
+        $midi->addMsg($track, $ticks." Meta TrkEnd");
       }
       
       
