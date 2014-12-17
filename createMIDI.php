@@ -117,7 +117,7 @@
       $midi->setBpm($tempo);
       
       //Create a track for each instrument
-      for($i = 0; $i < $tracks; $i++) {
+      for($i = 0; $i < $numTracks; $i++) {
         $currTrack = $midi->newTrack();
         echo "Track: ".$currTrack;
         $channel = $i + 1;
@@ -157,6 +157,8 @@
       
       
       $midi_text = $midi->getTxt();
+      echo $midi_text;
+      echo '</br>';
       $midi->importTxt($midi_text);
       $save_dir = 'tmp/';
       srand((double)microtime()*1000000);
