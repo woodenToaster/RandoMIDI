@@ -134,7 +134,7 @@
         $midi->addMsg($currTrack, $ticks." PrCh ch=".$channel." p=".$instrNum);
 
         //Create an array of random notes
-        $numNotes = rand(1,10);
+        $numNotes = rand(5,10);
         $notes = [];
         for($i = 0; $i < $numNotes; $i++) {
           $noteVal = rand(0, 127);
