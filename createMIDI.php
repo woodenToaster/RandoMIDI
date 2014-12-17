@@ -118,7 +118,8 @@
       
       //Create a track for each instrument
       for($i = 0; $i < $numTracks; $i++) {
-        $currTrack = $midi->newTrack();
+        $currTrack = $i;
+
         echo "Track: ".$currTrack;
         $channel = $i + 1;
         $ticks = 0;
@@ -136,7 +137,7 @@
         //Create an array of random notes
         $numNotes = rand(1,5);
         $notes = [];
-        for($i = 0; $i < $notes; $i++) {
+        for($i = 0; $i < $numNotes; $i++) {
           $noteVal = rand(0, 127);
           $notes[] = $noteVal;
         }
@@ -153,6 +154,7 @@
         //End the track
         $ticks += 480;
         $midi->addMsg($currTrack, $ticks." Meta TrkEnd");
+        $midi->newTrack();
       }
       
       
