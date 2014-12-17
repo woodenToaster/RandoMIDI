@@ -5,7 +5,8 @@
       //Display errors during developemnt
       ini_set('display_errors',1);
       ini_set('display_startup_errors',1);
-      mysqli_report(MYSQLI_REPORT_ALL);
+      ini_set('memory_limit', '512M');
+      //mysqli_report(MYSQLI_REPORT_ALL);
       error_reporting(E_ALL);
 
       require('classes/midi.class.php');
@@ -131,14 +132,14 @@
         $midi->addMsg($track, $ticks." PrCh ch=".$channel." p=".$instrNum);
 
         //Create an array of random notes
-        $numNotes = rand(1,10);
+        $numNotes = rand(1,5);
         $notes = [];
         for($i = 0; $i < $notes; $i++) {
           $noteVal = rand(0, 127);
           $notes[] = $noteVal;
         }
 
-        $measures = rand(5, 10);
+        $measures = rand(2, 4);
         $durations = ['w', 'h', 'q', 'e', 's'];
         for($i = 0; $i < $measures; $i++) {
           $note = $notes[rand(0, ($numNotes - 1))];
@@ -160,14 +161,6 @@
       $file = $save_dir.rand().".mid";
       $midi->saveMidFile($file, 0666);
       
-      echo $midi_text;
-      echo "</br>";
-      print_r($midi);
-      
-      $pianoNum = array_search('Rock Organ', $midi->getInstrumentList());
-      echo $pianoNum; echo "</br>";
-      
-      $smf = $midi->getMid();
       $midi->playMidFile($file, true, true, true, "windowsmedia");
     ?>
   </body>
