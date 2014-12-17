@@ -5,6 +5,7 @@
       //Display errors during developemnt
       ini_set('display_errors',1);
       ini_set('display_startup_errors',1);
+      mysqli_report(MYSQLI_REPORT_ALL);
       error_reporting(E_ALL);
 
       require('classes/midi.class.php');
@@ -64,18 +65,22 @@
 
       if(isset($_POST["motif"])) {
         $motif = $_POST["motif"];
+        echo "$motif: ".$motif;
         //See if this motif is already in the DB
         $stmt = $conn->prepare('SELECT * FROM MOTIFS WHERE Motif = ?');
         $stmt->bind_param('s', $motif);
         $stmt->execute();
         $result = $stmt->get_result();
-        $finfo = $result->fetch_field();
-        if(!$finfo->Motif) {
+        $stmt->close();
+        
+        if($result->num_rows == 0) {
           //Add this motif to the DB
-          $stmt = $conn->prepare('INSERT INTO MOTIFS(Key, Mode, TimeSignature, Motif) VALUES(?, ?, ?, ?)');
-          $stmt->bind_param('ssss', $key, $mode, '4/4', $motif);
+          $insertStmt = $conn->stmt_init();
+          $insertStmt = $conn->prepare('INSERT INTO MOTIFS VALUES (NULL, ?, ?, "4/4", ?)');
+          $insertStmt->bind_param('sss', $key, $mode, $motif);
 
-          $stmt->execute();
+          $insertStmt->execute();
+          $insertStmt->close();
         }
       } else {
         //TODO: select random motif from DB

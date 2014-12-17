@@ -34,19 +34,19 @@
             <label for="key">Key</label>
             <select name="key" form="options" class="form-control">
               <option value="atonal">Atonal</option>
-              <option value="c">C</option>
-              <option value="c-sharp">C-sharp</option>
-              <option value="d-flat">D-flat</option>
-              <option value="d">D</option>
-              <option value="e-flat">E-flat</option>
-              <option value="e">E</option>
-              <option value="f">F</option>
-              <option value="f-sharp">F-sharp</option>
-              <option value="g">G</option>
-              <option value="a-flat">A-flat</option>
-              <option value="a">A</option>
-              <option value="b-flat">B-flat</option>
-              <option value="b">B</option>
+              <option value="C">C</option>
+              <option value="C-sharp">C-sharp</option>
+              <option value="D-flat">D-flat</option>
+              <option value="D">D</option>
+              <option value="E-flat">E-flat</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="F-sharp">F-sharp</option>
+              <option value="G">G</option>
+              <option value="A-flat">A-flat</option>
+              <option value="A">A</option>
+              <option value="B-flat">B-flat</option>
+              <option value="B">B</option>
             </select>
               </div>
               <div class="form-group">
