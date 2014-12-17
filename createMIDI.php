@@ -66,14 +66,14 @@
         $motif = $_POST["motif"];
         //See if this motif is already in the DB
         $stmt = $conn->prepare('SELECT * FROM MOTIFS WHERE Motif = ?');
-        $stmt->bind_param($motif);
+        $stmt->bind_param('s', $motif);
         $stmt->execute();
         $result = $stmt->get_result();
         if(!$result) {
           //Add this motif to the DB
           $stmt = $conn->prepare('INSERT INTO MOTIFS(Key, Mode, TimeSignature, Motif)
                                   VALUES(?, ?, ?, ?)');
-          $stmt->bind_param($key, $mode, '4/4', $motif);
+          $stmt->bind_param('ssss', $key, $mode, '4/4', $motif);
 
           $stmt->execute();
         }
