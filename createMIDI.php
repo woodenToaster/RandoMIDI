@@ -15,6 +15,9 @@
       //Create the actual MIDI object
       $midi = new Midi();
 
+      //The list of all available instruments
+      $instrumentList = $midi->getInstrumentList();
+
       //Get all posted variables 
       if(isset($_POST["name"])) {
         $compName = $_POST["name"];
@@ -46,15 +49,14 @@
         $tempo = (string)rand(60, 260);
       }
 
-      
+      $instruments = [];
 
       if(isset($_POST["instruments"]) and !empty($_POST["instruments"])) {
         $instrumentNames = $_POST["instruments"];
         for($i = 0; $i < count($instrumentNames); $i++) {
-          $instruments[$i] = array_search($instrumentNames[$i], $midi->getInstrumentList());
+          $instruments[$i] = array_search($instrumentNames[$i], $instrumentList);
         }
       } else {
-        $instruments = [];
         $options = [
           'Piano', 'Distortion Guitar', 'Cello', 'Violin', 'Harpsichord', 'Steel String Guitar',
           'French Horn', 'Flute', 'Clarinet', 'Bassoon', 'Tuba'
@@ -64,13 +66,13 @@
         //Populate array of 1-3 random instruments if none were selected
         for($i = 0; $i < $numInstruments; $i++) {
           $index = rand(0, 10);
-          $instruments[$i] = array_search($options[$index], $midi->getInstrumentList());
+          $instruments[$i] = array_search($options[$index], $instrumentList);
         }
       }
 
-      if(isset($_POST["motif"])) {
+      if(isset($_POST["motif"]) and $_POST["motif"] != "") {
         $motif = $_POST["motif"];
-        echo "$motif: ".$motif;
+        echo "Motif: ".$motif;
         //See if this motif is already in the DB
         $stmt = $conn->prepare('SELECT * FROM MOTIFS WHERE Motif = ?');
         $stmt->bind_param('s', $motif);
@@ -108,7 +110,7 @@
       
       foreach($instruments as $instrument) {
         echo "Number: " . $instrument;
-        echo "   Instr: " . ($midi->getInstrumentList())[$instrument]; 
+        echo "   Instr: " . $instrumentList[$instrument]; 
         echo "</br>";
       }
       echo $motif;       echo "</br>";
