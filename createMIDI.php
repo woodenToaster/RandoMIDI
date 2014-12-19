@@ -106,6 +106,7 @@
 
       if(isset($_POST["motif"]) and $_POST["motif"] != "") {
         $motif = $_POST["motif"];
+        echo "Motif is set:  " . $motif;
         //See if this motif is already in the DB
         $stmt = $conn->prepare('SELECT * FROM MOTIFS WHERE Motif = ?');
         $stmt->bind_param('s', $motif);
@@ -133,6 +134,7 @@
           "ORDER BY RAND() LIMIT 1"
         );
         $motif = $result->fetch_assoc()['Motif'];
+        echo "Motif not set: " . $motif;
       }
 
       if(isset($_POST["progression"])) {
