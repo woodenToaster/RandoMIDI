@@ -18,6 +18,9 @@
       //The list of all available instruments
       $instrumentList = $midi->getInstrumentList();
 
+      //The array of all notes
+      $noteList = $midi->getNoteList();
+
       //Get all posted variables 
       if(isset($_POST["name"])) {
         $compName = $_POST["name"];
@@ -83,7 +86,10 @@
         if($result->num_rows == 0) {
           //Add this motif to the DB
           $insertStmt = $conn->stmt_init();
-          $insertStmt = $conn->prepare('INSERT INTO MOTIFS VALUES (NULL, ?, ?, "4/4", ?)');
+          $insertStmt = $conn->prepare(
+            "INSERT INTO MOTIFS " .
+            "VALUES (NULL, ?, ?, '4/4', ?)"
+          );
           $insertStmt->bind_param('sss', $key, $mode, $motif);
 
           $insertStmt->execute();
@@ -91,7 +97,11 @@
         }
       } else {
         //TODO: Make sure a random motif is selected from DB when the field is blank
-        $result = $conn->query('SELECT Motif FROM MOTIFS ORDER BY RAND() LIMIT 1');
+        $result = $conn->query(
+          "SELECT Motif " .
+          "FROM MOTIFS " .
+          "ORDER BY RAND() LIMIT 1"
+        );
         $motif = $result->fetch_assoc()['Motif'];
         echo "Motif: ".$motif; echo "</br>";
       }
@@ -108,10 +118,26 @@
       echo $mode;        echo "</br>";
       echo $tempo;       echo "</br>";
       
+      $ranges = [];
+      //Get valid ranges for instruments
       foreach($instruments as $instrument) {
-        echo "Number: " . $instrument;
-        echo "   Instr: " . $instrumentList[$instrument]; 
-        echo "</br>";
+        $instrName = $instrumentList[$instrument];
+        $rangeStmt = $conn->prepare(
+          "SELECT Low, High " .
+          "FROM INSTRUMENTS " .
+          "WHERE Name=?"
+        );
+        $rangeStmt->bind_param('s', $instrName);
+        $rangeStmt->execute();
+        $rangeResult = $rangeStmt->get_result();
+        $rowLowHigh = $rangeResult->fetch_row();
+        $low = $rowLowHigh[0];
+        $high = $rowLowHigh[1];
+        $rangeStmt->close();
+        $ranges[$instrName] = array(
+          "Low" => $low,
+          "High" => $high
+        ); 
       }
       
       //This section is where the MIDI text file is created
@@ -123,12 +149,13 @@
       
       //Create a track for each instrument
       for($i = 0; $i < $numTracks; $i++) {
-        $currTrack = $midi->newTrack() - 1;
         
-        echo "Track: ".$currTrack;
+        $currTrack = $midi->newTrack() - 1;
         $channel = $i + 1;
         $ticks = 0;
         $instrNum = $instruments[$i];
+        $instrName = $instrumentList[$instrNum];
+
         //Set most significant bit mode to false
         $midi->addMsg($currTrack, $ticks." Par ch=".$channel." c=6 v=0");
         //Set master volume to 100
@@ -143,7 +170,10 @@
         $numNotes = rand(5,10);
         $notes = [];
         for($j = 0; $j < $numNotes; $j++) {
-          $noteVal = rand(0, 127);
+          //Make sure the note is in the range of the current instrument
+          $lowest = array_search($ranges[$instrName]["Low"], $noteList);
+          $highest = array_search($ranges[$instrName]["High"], $noteList);
+          $noteVal = rand($lowest, $highest);
           $notes[] = $noteVal;
         }
 
