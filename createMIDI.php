@@ -19,11 +19,6 @@
                   <button type="submit" class="btn btn-default">Submit</button>
                 </div>
               </form>
-            </div>
-          </div>
-        </div>
-      </div>
-
     <?php
       //Display errors during developemnt
       ini_set('display_errors',1);
@@ -245,6 +240,10 @@
       $midi->playMidFile($file, true, true, true, "windowsmedia");
       echo "</div";
     ?>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
