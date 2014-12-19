@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+</head>
   <body>
     <?php include("php_includes/navbar.php"); ?>
     <div id="background">
@@ -139,7 +145,7 @@
       } else {
         $progression = "none";
       }
-      echo "<table>";
+      echo "<table class='table table-bordered'>";
       echo   "<tr>";
       echo      "<th>Name</th>";
       echo      "<th>Style</th>";
