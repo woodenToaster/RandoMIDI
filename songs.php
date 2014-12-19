@@ -6,7 +6,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </head>
   <body>
-    <?php include('navbar.php'); ?>
+    <?php include('php_includes/navbar.php'); ?>
     <div id="background">
       <div id="vertical-container">
         <div class="container-fluid">
