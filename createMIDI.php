@@ -141,7 +141,7 @@
                   $progression = "none";
                 }
                 
-                //Get valid notes from scales that fit with the key of the selected motif
+                TODO: Get valid notes from scales that fit with the key of the selected motif
                 $validMotifs = [];
                 $validNotes = [];
                 if($key != "atonal") {
@@ -151,16 +151,18 @@
                     "WHERE Tonic=Key " .
                     "AND Key=?"
                   );
-                  $notesStmt->bind_param('s', $key);
-                  $notesStmt->execute();
-                  $notesResult = $notesStmt->get_result();
-                  while($noteRows = $notesResult->fetch_row()) {
-                    $validMotifs[] = $noteRows[0];
-                    for($ind = 1; $ind < 8; $ind++) {
-                      $validNotes[] = $notesResult[$ind];
+                  if($notesStmt) {
+                    $notesStmt->bind_param('s', $key);
+                    $notesStmt->execute();
+                    $notesResult = $notesStmt->get_result();
+                    while($noteRows = $notesResult->fetch_row()) {
+                      $validMotifs[] = $noteRows[0];
+                      for($ind = 1; $ind < 8; $ind++) {
+                        $validNotes[] = $notesResult[$ind];
+                      }
                     }
+                    $notesStmt->close();
                   }
-                  $notesStmt->close();
                 }
                 
 
