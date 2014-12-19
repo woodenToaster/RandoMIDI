@@ -9,9 +9,11 @@
       error_reporting(E_ALL);
 
       require('classes/midi.class.php');
-      include('connection.php');
-      include('getTicksByNote.php');
+      include('php_includes/connection.php');
+      include('functions/getTicksByNote.php');
       
+      //Create the actual MIDI object
+      $midi = new Midi();
 
       //Get all posted variables 
       if(isset($_POST["name"])) {
@@ -44,10 +46,13 @@
         $tempo = (string)rand(60, 260);
       }
 
-      $midi = new Midi();
+      
 
       if(isset($_POST["instruments"]) and !empty($_POST["instruments"])) {
-        $instruments = $_POST["instruments"];
+        $instrumentNames = $_POST["instruments"];
+        for($i = 0; $i < count($instrumentNames); $i++) {
+          $instruments[$i] = array_search($instrumentNames[$i], $midi->getInstrumentList());
+        }
       } else {
         $instruments = [];
         $options = [
@@ -103,7 +108,7 @@
       
       foreach($instruments as $instrument) {
         echo "Number: " . $instrument;
-        //echo "   Instr: " . $list[$instrument]; 
+        echo "   Instr: " . (midi->getInstrumentList())[$instrument]; 
         echo "</br>";
       }
       echo $motif;       echo "</br>";

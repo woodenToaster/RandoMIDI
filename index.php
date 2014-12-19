@@ -1,6 +1,6 @@
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
@@ -72,31 +72,31 @@
                 <div class="col-lg-4">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="piano">
+                  <input type="checkbox" name="instruments[]" value="Piano">
                   Piano
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="guitar">
+                  <input type="checkbox" name="instruments[]" value="Distortion Guitar">
                   Guitar
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="cello">
+                  <input type="checkbox" name="instruments[]" value="Cello">
                   Cello
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="violin">
+                  <input type="checkbox" name="instruments[]" value="Violin">
                   Violin
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="electric bass">
+                  <input type="checkbox" name="instruments[]" value="Fingered Bass">
                   Electric Bass
                 </label>
               </div>
@@ -104,31 +104,31 @@
                 <div class="col-lg-4">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="harpsichord">
+                  <input type="checkbox" name="instruments[]" value="Harpsichord">
                   Harpsichord
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="acoustic guitar">
+                  <input type="checkbox" name="instruments[]" value="Steel String Guitar">
                   Acoustic Guitar
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="classical guitar">
+                  <input type="checkbox" name="instruments[]" value="Nylon Str Guitar">
                   Classical Guitar
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="french horn">
+                  <input type="checkbox" name="instruments[]" value="French Horn">
                   French Horn
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="string bass">
+                  <input type="checkbox" name="instruments[]" value="Contrabass">
                   String Bass
                 </label>
               </div>
@@ -136,13 +136,13 @@
                 <div class="col-lg-4">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="flute">
+                  <input type="checkbox" name="instruments[]" value="Flute">
                   Flute
                 </label>
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="clarinet">
+                  <input type="checkbox" name="instruments[]" value="Clarinet">
                   Clarinet
                 </label>
               </div>
@@ -154,13 +154,7 @@
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="percussion">
-                  Percussion
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox" name="instruments[]" value="tuba">
+                  <input type="checkbox" name="instruments[]" value="Tuba">
                   Tuba
                 </label>
               </div>
