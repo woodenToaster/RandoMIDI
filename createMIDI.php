@@ -123,7 +123,7 @@
       
       //Create a track for each instrument
       for($i = 0; $i < $numTracks; $i++) {
-        $currTrack = $midi->newTrack();
+        $currTrack = $midi->newTrack() - 1;
         
         echo "Track: ".$currTrack;
         $channel = $i + 1;
