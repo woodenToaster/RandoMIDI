@@ -142,14 +142,15 @@
         //Create an array of random notes
         $numNotes = rand(5,10);
         $notes = [];
-        for($i = 0; $i < $numNotes; $i++) {
+        for($j = 0; $j < $numNotes; $j++) {
           $noteVal = rand(0, 127);
           $notes[] = $noteVal;
         }
 
         $measures = rand(5, 10);
         $durations = ['w', 'h', 'q', 'e', 's'];
-        for($i = 0; $i < $measures; $i++) {
+        //Add the notes
+        for($k = 0; $k < $measures; $k++) {
           $note = $notes[rand(0, ($numNotes - 1))];
           $midi->addMsg($currTrack, $ticks." On ch=".$channel." n=".$note." v=80");
           $increment = getTicksByNote($durations[rand(0, 4)]);
@@ -161,7 +162,6 @@
         $midi->addMsg($currTrack, $ticks." Meta TrkEnd");
 
       }
-      
       
       $midi_text = $midi->getTxt();
       echo $midi_text;
