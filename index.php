@@ -25,9 +25,8 @@
                 <label for="style">Style</label>
                 <select name="style" form="options" class="form-control">
                   <option value="none">None</option>
-                  <option value="rock">Rock</option>
-                  <option value="blues">Blues</option>
-                  <option value="classical">Classical</option>
+                  <option value="Rock">Rock</option>
+                  <option value="Classical">Classical</option>
                 </select>
               </div>
               <div class="form-group">
@@ -148,7 +147,7 @@
               </div>
               <div class="checkbox">
                 <label>
-                  <input type="checkbox" name="instruments[]" value="bassoon">
+                  <input type="checkbox" name="instruments[]" value="Bassoon">
                   Bassoon
                 </label>
               </div>

@@ -113,19 +113,18 @@
         echo "   Instr: " . $instrumentList[$instrument]; 
         echo "</br>";
       }
-      echo $motif;       echo "</br>";
-      echo $progression; echo "</br>";
-
+      
       //This section is where the MIDI text file is created
       $numTracks = count($instruments);
       echo "Tracks: ".$numTracks;
+      echo "</br>";
       $midi->open();
       $midi->setBpm($tempo);
       
       //Create a track for each instrument
       for($i = 0; $i < $numTracks; $i++) {
-        $currTrack = $i + 1;
-        $midi->newTrack();
+        $currTrack = $midi->newTrack();
+        
         echo "Track: ".$currTrack;
         $channel = $i + 1;
         $ticks = 0;
