@@ -160,8 +160,9 @@
                       $validNotes[] = $notesResult[$ind];
                     }
                   }
+                  $notesStmt->close();
                 }
-                $notesStmt->bind_param('s', $key);
+                
 
                 echo "<table class='table table-bordered'>";
                 echo   "<tr>";
