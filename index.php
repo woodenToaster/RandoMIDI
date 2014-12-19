@@ -189,10 +189,18 @@ function validateForm(){
     }
   }
   x = document.forms["options"]["progression"].value;
-  var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)\s)+/
+  var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)\s)+/;
   if(x.length != 0){
     if(!patt.test(x)){
       alert("Chord progression needs to be in form of roman numeral 'space' roman numeral");
+      temp = false;
+    }
+  }
+  var motif = document.forms["options"]["motif"].value;
+  var motifPattern = /(\[[A-G]s?[0-9],[whqes]\])+/;
+  if(motif.length != 0) {
+    if(!motifPattern.test(motif)) {
+      alert("Motifs must be in the correct form");
       temp = false;
     }
   }
