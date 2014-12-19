@@ -22,7 +22,7 @@
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name your composition">
               </div>
               <div class="form-group">
-                <label for="style">Style (If you select a style, please do not select any instrumets)</label>
+                <label for="style">Style (If you select a style, please do not select any instruments)</label>
                 <select name="style" form="options" class="form-control">
                   <option value="none">None</option>
                   <option value="Rock">Rock</option>
