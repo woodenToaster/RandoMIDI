@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <html>
   <body>
+    <?php include("php_includes/navbar.php"); ?>
+    <div id="background">
+      <div id="vertical-container">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-md-6">
+              <form role="search">
+                <div class="form-inline">
+                  <input type="text" class="form-control" placeholder="Search">
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <?php
       //Display errors during developemnt
       ini_set('display_errors',1);
@@ -88,7 +105,6 @@
 
       if(isset($_POST["motif"]) and $_POST["motif"] != "") {
         $motif = $_POST["motif"];
-        echo "Motif: ".$motif;
         //See if this motif is already in the DB
         $stmt = $conn->prepare('SELECT * FROM MOTIFS WHERE Motif = ?');
         $stmt->bind_param('s', $motif);
@@ -116,7 +132,6 @@
           "ORDER BY RAND() LIMIT 1"
         );
         $motif = $result->fetch_assoc()['Motif'];
-        echo "Motif: ".$motif; echo "</br>";
       }
 
       if(isset($_POST["progression"])) {
@@ -124,12 +139,22 @@
       } else {
         $progression = "none";
       }
-
-      echo $compName;    echo "</br>";
-      echo $style;       echo "</br>";
-      echo $key;         echo "</br>";
-      echo $mode;        echo "</br>";
-      echo $tempo;       echo "</br>";
+      echo "<table>";
+      echo   "<tr>";
+      echo      "<th>Name</th>";
+      echo      "<th>Style</th>";
+      echo      "<th>Key</th>";
+      echo      "<th>Mode</th>";
+      echo      "<th>Tempo</th>";
+      echo  "</tr>";
+      echo  "<tr>";
+      echo      "<th>".$compName."</th>";
+      echo      "<th>".$style."</th>";
+      echo      "<th>".$key."</th>";
+      echo      "<th>".$mode."</th>";
+      echo      "<th>".$tempo."</th>";
+      echo  "</tr>";
+      echo "</table";
       
       $ranges = [];
       //Get valid ranges for instruments
@@ -155,8 +180,6 @@
       
       //This section is where the MIDI text file is created
       $numTracks = count($instruments);
-      echo "Tracks: ".$numTracks;
-      echo "</br>";
       $midi->open();
       $midi->setBpm($tempo);
       
@@ -203,19 +226,19 @@
         //End the track
         $ticks += 480;
         $midi->addMsg($currTrack, $ticks." Meta TrkEnd");
-
       }
       
       $midi_text = $midi->getTxt();
-      echo $midi_text;
-      echo '</br>';
       $midi->importTxt($midi_text);
       $save_dir = 'tmp/';
       srand((double)microtime()*1000000);
       $file = $save_dir.rand().".mid";
       $midi->saveMidFile($file, 0666);
       
+      echo "<div>";
       $midi->playMidFile($file, true, true, true, "windowsmedia");
+      echo "</div";
     ?>
+    </div>
   </body>
 </html>
