@@ -197,7 +197,7 @@ function validateForm(){
     }
   }
   var motif = document.forms["options"]["motif"].value;
-  var motifPattern = /(\[[A-G]s?[0-9],[whqes]\])+/;
+  var motifPattern = /(\[[ABCDEFG]s?[0-9],[whqes]\])+/;
   if(motif.length != 0) {
     if(!motifPattern.test(motif)) {
       alert("Motifs must be in the correct form");
