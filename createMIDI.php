@@ -141,7 +141,7 @@
                   $progression = "none";
                 }
                 
-                TODO: Get valid notes from scales that fit with the key of the selected motif
+                //TODO: Get valid notes from scales that fit with the key of the selected motif
                 $validMotifs = [];
                 $validNotes = [];
                 if($key != "atonal") {
