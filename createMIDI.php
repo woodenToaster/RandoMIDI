@@ -21,6 +21,9 @@
       //The array of all notes
       $noteList = $midi->getNoteList();
 
+      //The list of intruments for the current song
+      $instruments = [];
+
       //Get all posted variables 
       if(isset($_POST["name"])) {
         $compName = $_POST["name"];
@@ -30,6 +33,18 @@
       
       if(isset($_POST["style"])) {
         $style = $_POST["style"];
+        //Get the instruments associated with this style
+        $styleStmt = $conn->prepare(
+          "SELECT i.Name " .
+          "FROM INSTRUMENTS i, STYLES s " .
+          "WHERE i.Name=s.Instrument and s.Style=?"
+        );
+        $styleStmt->bind_param('s', $style);
+        $styleStmt->execute();
+        $styleResult = $styleStmt->get_result();
+        while($styleRow = $styleResult->fetch_row()) {
+          $instruments[] = array_search($styleRow[0], $instrumentList);
+        }
       } else {
         $style = "none";
       }
@@ -52,9 +67,7 @@
         $tempo = (string)rand(60, 260);
       }
 
-      $instruments = [];
-
-      if(isset($_POST["instruments"]) and !empty($_POST["instruments"])) {
+      if(isset($_POST["instruments"]) and !empty($_POST["instruments"] and $style == "none")) {
         $instrumentNames = $_POST["instruments"];
         for($i = 0; $i < count($instrumentNames); $i++) {
           $instruments[$i] = array_search($instrumentNames[$i], $instrumentList);
