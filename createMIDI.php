@@ -108,7 +108,7 @@
       
       foreach($instruments as $instrument) {
         echo "Number: " . $instrument;
-        echo "   Instr: " . (midi->getInstrumentList())[$instrument]; 
+        echo "   Instr: " . ($midi->getInstrumentList())[$instrument]; 
         echo "</br>";
       }
       echo $motif;       echo "</br>";
