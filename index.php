@@ -16,7 +16,7 @@
         </div>
         <div class="row">
           <div class="col-lg-12">
-            <form  id="options" action="createMIDI.php" method="post">
+            <form  id="options" action="createMIDI.php" onsubmit="return validateForm()" method="post">
               <div class="form-group">
                 <label for="name">Name</label>
                 <input type="text" class="form-control" id="name" name="name" placeholder="Name your composition">
@@ -176,4 +176,27 @@
   </div>
 </body>
 </html>
+
+
+<script>
+function validateForm(){
+  var x = document.forms["options"]["tempo"].value;
+  var temp = true;
+  if(x.length != 0){
+    if(40 > x || x > 260){
+      alert("Given tempo is out of bounds.");
+      temp = false;
+    }
+  }
+  x = document.forms["options"]["progression"].value;
+  var patt = /((I|II|III|IV|V|VI|VII|i|ii|iii|iv|v|vi|vii)+\s)+/
+  if(x.length != 0){
+    if(!patt.test(x)){
+      alert("Chord progression needs to be in form of roman numeral 'space' roman numeral");
+      temp = false;
+    }
+  }
+  return temp;
+}
+</script>
 
